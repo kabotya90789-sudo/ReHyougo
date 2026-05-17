@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+/* 全体の設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFECBD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+a {
+    font-size: 20px;
+    color: #7B7B7B;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    opacity: .6;
+    transition: .3s
+}
+
+/* 白いログインパネル */
+.login_form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 550px;
+    
+}
+
+.login_ttl {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/*ログインの下の線*/
+hr {
+    border: 0;
+    border-top: 3px solid #D9D9D9;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/*入力欄*/
+.field {
+    margin-bottom: 15px;
+    padding: 20px 40px;
+
+    
+}
+
+.field label {
+    display: block;
+    font-size: 20px;
+    color: #7B7B7B;
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #7B7B7B;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login_register_btn_area {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.login_register_btn_area,
+.login_submit_area {
+    margin-top: auto;
+}
+
+.login_submit_area {
+    text-align: center;
+    position: relative;
+    margin-top: 30px
+}
+
+
+
+/* オレンジのボタン */
+.login_submit {
+    background-color: #FF9E42;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+/*戻るボタン*/
+.register_back {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+  
+}

@@ -1,0 +1,27 @@
+-- TAGS_CATEGORYカテゴリ作成 ここから
+INSERT INTO TAGS_CATEGORY(CATEGORY_NAME)
+VALUES('食べる')
+,('遊ぶ')
+,('観る')
+,('買う')
+,('休む');
+-- TAGS_CATEGORYカテゴリ作成 ここまで
+
+-- USERS_STATUSカテゴリ作成 ここから
+INSERT INTO USERS_STATUS(USERS_STATUS_NAME)
+VALUES('登録中')
+,('退会済');
+-- USERS_STATUSカテゴリ作成 ここまで
+
+-- EVENTS_STATUSカテゴリ作成 ここから
+INSERT INTO EVENTS_STATUS(EVENTS_STATUS_NAME)
+VALUES('有効')
+,('無効');
+-- EVENTS_STATUSカテゴリ作成 ここまで
+
+-- 管理者アカウント作成 ここから
+INSERT INTO USERS(MST_USER_ID,USER_PASSWORD,IS_ADMIN,USERS_STATUS_ID)
+VALUES('ADMIN','53811ce4aacaa9d822ee197923ddf3dd6c8a27340816b2c68629b979bc4a1c5fefb70ab9fa5ff9c10390ffec9898ed4b0316468b73b7f03309b60efbead05f38',TRUE,1);
+-- 暗号化前pass "DUMY0000"
+-- 管理者アカウント作成 ここまで
+

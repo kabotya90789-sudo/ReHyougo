@@ -1,0 +1,444 @@
+@charset "utf-8";
+/*=================================================================
+    ■ヘッダー 
+=============================================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #FF9E42;
+    z-index: 9999;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: inherit;
+    color: #fff;
+    height: 100%;
+    padding: 0 40px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+
+.header_logo a {
+    text-decoration: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 50px;
+    color: #fff;
+}
+
+/* 検索 */
+
+.search_form_wrap {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.search_box {
+    position: absolute;
+    left: 50%;
+    top: 20%;   /* ←ここで上に調整 */
+
+    transform: translateX(-50%);
+
+    width: 570px;
+    height: 60px;
+
+    background-color: #fff;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+
+    transition: height 0.3s ease;
+
+    overflow: hidden;
+}
+
+.search_box.open {
+    height: 270px;
+}
+
+.search_form {
+    display: flex;
+    width: 100%;
+    min-height: 60px; /* ←固定 */
+    align-items: center;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.search_bar {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 10px; /* ←ちょい右にずれる調整 */
+    font-size: 16px;
+}
+
+.search_btn {
+    width: 60px;
+    height: 40px;
+
+    border: none;
+    background: #FF9E42;
+    color: #fff;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    margin-left: 8px;
+}
+
+.search_icon_btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    background: #ffecbd00;
+    border-radius: 20px;
+
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.search_btn {
+    width: 80px;
+    height: 40px;
+
+    border: none;
+    background: #FFECBD;
+    color: #FF9E42;
+
+    border-radius: 20px;
+    cursor: pointer;
+
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: -15px;
+}
+.suggest_area {
+    height: 140px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.search_box.open .suggest_area {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.divider {
+    height: 1px;
+    background: #ddd;
+    margin: 10px 0;
+}
+
+.tag_text_b {
+    font-size: 32px;
+    color: #777;
+}
+
+.tag_text_s{
+    font-size: 24px;
+    color: #777;
+}
+
+.tag_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 12px;
+    padding-top: 10px;
+}
+
+.tag_btn {
+    height: 50px;          /* ←大きく */
+    padding: 0 12px;       /* 横はコンパクト */
+
+    border: none;
+    border-radius: 25px;
+
+    background: #FFECBD;
+    cursor: pointer;
+
+    font-size: 24px;
+    color: #FF9E42;
+    font-weight: 600;
+
+    transition: 0.2s;
+    padding-top: -5px;
+}
+
+.tag_btn:hover {
+    background: #e6e6e6;
+    transform: scale(1.03);
+}
+
+/*ハンバーガー（線）*/
+.hamburger_menu_btn span {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 70%;
+    height: 10px;
+    background-color: #fff;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+
+.hamburger_menu_btn span::after,
+.hamburger_menu_btn span::before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 10px;
+    background-color: #fff;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+
+.hamburger_menu_btn span::before {
+    top: -20px;
+}
+
+.hamburger_menu_btn span::after {
+    bottom: -20px;
+}
+
+.hamburger_menu_btn.menu_open span {
+    background-color: transparent;
+}
+
+.hamburger_menu_btn.menu_open span::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.hamburger_menu_btn.menu_open span::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+/*ハンバーガーボタン本体*/
+.hamburger_menu_btn {
+    width: 100px;
+    height: 100px;
+
+    position: absolute;  /* ←これが正解 */
+    right: 0;
+    top: 0;
+
+    margin: 0;
+
+    appearance: none;
+    border: 0;
+    padding: 0;
+
+    background-color: #FF9E42;
+    cursor: pointer;
+    z-index: 40;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*メニュー*/
+.nav {
+    position: fixed;
+    width: 400px;
+    height: 100vh;
+    top: 0;
+    right: -100%;
+    background-color: #fff;
+
+    padding: 50px 0;
+    border-top: 1px solid #fff;
+    z-index: 20;
+
+    margin-left: auto;
+    padding-top: 99px;
+
+    transition: all 0.5s;
+}
+
+.nav.menu_open {
+    right: 0;
+}
+
+.nav_item {
+    position: relative;
+    margin: 0px;
+}
+
+.nav_item::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+
+    width: 95%;
+    height: 3px;
+    background: #D9D9D9;
+    bottom: -1.5px;
+
+    border-radius: 1.5px;
+    z-index: 10;
+}
+
+.nav_item a {
+    display: block;
+    font-size: 24px;
+    color: #7B7B7B;
+    text-decoration: none;
+
+    padding: 40px 0 30px 50px;
+    text-transform: uppercase;
+
+    transition: background-color 0.4s ease;
+}
+
+.nav_item a:hover {
+    background-color: rgba(233, 233, 233, 0.6);
+}
+
+/*リスト初期化*/
+ul {
+    padding-inline-start: 0;
+}
+
+ul.nav_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/* 全体の設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFECBD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+a {
+    font-size: 20px;
+    color: #7B7B7B;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    opacity: .6;
+    transition: .3s
+}
+
+/* 白いログインパネル */
+.user_delete_form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    min-height: 550px;
+    
+}
+
+.user_delete_ttl {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/*ログインの下の線*/
+hr {
+    border: 0;
+    border-top: 3px solid #D9D9D9;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/*退会画面本文*/
+.notice_list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 30px;
+}
+.main_msg {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: large;
+  font-weight: 500;
+
+}
+
+.notice_list_item {
+    list-style-type: none;
+
+
+   
+
+}
+
+/*入力欄*/
+
+.delete_submit_area {
+    margin-top: auto;
+    text-align: center;
+    position: relative;
+}
+
+/* オレンジのボタン */
+.delete_btn {
+    background-color: #FF9E42;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+/*戻るボタン*/
+.delete_back {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+  
+}

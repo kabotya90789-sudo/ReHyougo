@@ -1,0 +1,97 @@
+/* =========================================
+   ログアウトモーダル用
+   ========================================= */
+
+/* モーダル全体の背景（オーバーレイ） */
+#mypage_logout {
+    display: none;
+    /* 初期状態は非表示 */
+    position: fixed;
+    /* 画面に対して固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明の黒 */
+    z-index: 9999;
+    /* 一番手前に来るように */
+    justify-content: center;
+    /* 中身を左右中央に */
+    align-items: center;
+    /* 中身を上下中央に */
+}
+
+/* モーダルの白い窓 */
+.mypage_logout_modal {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    /* 角を丸くして今っぽく */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    animation: fadeIn 0.3s ease;
+    /* ふわっと出す演出 */
+}
+
+/* 「ログアウトしますか？」の文字 */
+#mypage_logout p {
+    font-size: 20px;
+    font-weight: medium;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ボタンの配置 */
+.mypage_logout_modal_btn {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+	margin-top: 10px;
+}
+
+/* ボタンの共通スタイル */
+.mypage_logout_modal_btn a {
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mypage_logout_modal_btn a:hover {
+    opacity: 0.8;
+}
+
+/* 「はい」ボタン（警告色） */
+#mypage_logout_btn_yes,
+.mypage_logout_btn_no {
+    background-color: #f0f0f0;
+    /* グレー系 */
+    color: #666 !important;
+	width: 100px;
+	height: 40px;
+	
+}
+
+
+/* ふわっと表示させるアニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

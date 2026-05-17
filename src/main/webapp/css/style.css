@@ -1,0 +1,1554 @@
+@charset "utf-8";
+
+
+
+#mapcontainer {
+	width: 100%;
+	height: 100%;
+}
+
+.leaflet-control-zoom {
+	margin-top: 110px !important;
+	margin-left: 20px !important;
+
+	transform: scale(0.85);
+	transform-origin: top left;
+}
+
+
+.create_pin_btn {
+	position: absolute;
+	bottom: 25px;
+	right: 20px;
+
+	width: 139px;
+	height: 139px;
+	border-radius: 50%;
+
+	background-image: url("../img/create_pin_btn.svg");
+	background-size: cover;
+	background-position: center;
+
+	cursor: pointer;
+	z-index: 1000;
+
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+	transition: transform 0.2s ease;
+}
+
+.create_pin_btn:hover {
+	transform: scale(1.05);
+}
+
+.spot-pin{
+	filter:
+		drop-shadow(2px 0 0 white)
+		drop-shadow(-2px 0 0 white)
+		drop-shadow(0 2px 0 white)
+		drop-shadow(0 -2px 0 white);
+	}
+
+/*イベントピン======================
+*/
+.event-pin-wrapper{
+	position: relative;
+}
+
+/* 下の丸画像 */
+.event-image{
+	position: absolute;
+
+	top: 9px;
+	left: 17px;
+
+	width: 75px;
+	height: 75px;
+
+	border-radius: 50%;
+	object-fit: cover;
+
+	z-index: 2;
+}
+
+/* 上の枠 */
+.event-frame{
+	position: absolute;
+
+	top: 0;
+	left: 0;
+	width: 100px;
+
+	z-index: 1;
+
+	filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+/*=================================================================
+    ■詳細パネル
+=============================================================== */
+
+.detail-panel {
+	position: fixed;
+	top: 0;
+
+	width: 450px;
+	height: 700px;
+	background: #fff;
+	transform: translateX(-100%);
+
+	left: -350px;
+	z-index: 2000;
+	padding: 10px;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	bottom: 0;
+	padding-bottom: 10px;
+	overflow: visible;
+}
+
+.panel_wrap {
+
+	top: 0;
+	background: rgb(255, 255, 255, 0);
+
+
+	z-index: 5;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	bottom: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-bottom: 10px;
+
+	
+}
+
+.detail-panel.open {
+	left: 30px;
+	top: 175px;
+	bottom: 0;
+	transform: translateX(0);
+}
+
+.close-btn {
+	    background: none;
+	    border: none;
+	    padding: 0;
+	    margin: 0;
+	    font: inherit;
+	    color: inherit;
+	    cursor: pointer;
+	    display: inline-block;
+	}
+
+.panel_wrap::-webkit-scrollbar {
+	width: 6px;
+}
+
+.panel_wrap::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 10px;
+}
+
+.panel_wrap::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.panel_section {
+
+	width: 100%;
+	padding: 5px 10px;
+	position: relative;
+	background: transparent;
+	display: block;
+
+	box-sizing: border-box;
+
+	background: transparent;
+
+	box-sizing: border-box;
+	overflow: visible;
+	word-break: break-word;
+	border-bottom: 3px solid #D9D9D9;
+}
+
+/*.panel_section::after {*/
+/*	content: "";*/
+/*	position: absolute;*/
+/*	left: 0px;*/
+/*	right: 0px;*/
+
+/*	height: 3px;*/
+/*	background: #D9D9D9;*/
+
+/*	bottom: 0;*/
+/*	border-radius: 1px;*/
+/*}*/
+.review_section {
+
+	width: 100%;
+	position: relative;
+	background: transparent;
+	display: block;
+
+	box-sizing: border-box;
+
+	background: transparent;
+
+	box-sizing: border-box;
+	overflow: visible;
+	padding-bottom: 2px;
+	padding-top: 5px;
+	word-break: break-word;
+	overflow-wrap: break-word;
+}
+
+/*.review_section::after {*/
+/*	content: "";*/
+/*	position: absolute;*/
+/*	left: 0px;*/
+/*	right: 0px;*/
+
+/*	height: 3px;*/
+/*	background: #D9D9D9;*/
+
+/*	bottom: 0;*/
+/*	border-radius: 1px;*/
+/*}*/
+
+.add_review_btn {
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+.edit_review_btn {
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+
+.review_edit_btn {
+	appearance: none;
+	-webkit-appearance: none;
+
+	background: none;
+	background-color: transparent;
+
+	border: none;
+	color: #777;
+
+
+	padding: 6px 12px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: auto;
+	white-space: nowrap;
+}
+
+.review_auther_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 10px;
+}
+
+.review_auther_wrapper p {
+	margin: 0;
+	font-size: 14px;
+	color: #777;
+	white-space: nowrap;
+}
+
+.review_title {
+	color: black;
+	font-size: 18px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.review_good_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	/* 右寄せ */
+	/* iconと999の間 */
+	width: 100%;
+	gap: 4px;
+	padding-bottom: 10px;
+}
+
+.review_good_wrapper p {
+	margin: 0;
+	font-size: 14px;
+	color: #777;
+}
+
+.add_good {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    position: relative;
+}
+
+.good_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition: opacity 0.3s ease;
+	display: block;
+}
+
+/* 初期状態（いいねしてない） */
+.good_icon.on {
+    opacity: 0;
+}
+
+/*.good_icon.off {*/
+/*    opacity: 1;*/
+/*}*/
+
+/* いいねON */
+.add_good.is-active .good_icon.on {
+    opacity: 1;
+}
+
+.add_good.is-active .good_icon.off {
+    opacity: 0;
+}
+
+.good_count {
+    margin: 0;
+}
+
+.title_wrapper {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	
+}
+
+.panel_section h2 {
+	margin: 0;
+	flex: 1;
+}
+
+.search_bookmark {
+	width: 40px;
+	height: 40px;
+	border: none;
+	background: transparent;
+	border-radius: 20px;
+	cursor: pointer;
+/*	left: 1130px;*/
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0;
+/*	position: relative;*/
+/*	top: -180px;*/
+}
+.detail_bookmark {
+	width: 40px;
+	height: 40px;
+	border: none;
+	background: transparent;
+	border-radius: 20px;
+	cursor: pointer;
+
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0;
+	position: relative;
+
+}
+
+.bookmark_icon {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	transition: opacity 0.3s ease;
+}
+
+.icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+
+	transition: opacity 0.3s ease;
+}
+
+/* 初期状態 */
+.icon.on {
+	opacity: 0;
+}
+
+/* ON時 */
+.search_bookmark.is-active .icon.on {
+	opacity: 1;
+}
+
+.search_bookmark.is-active .icon.off {
+	opacity: 0;
+}
+/* OFF時 */
+.search_bookmark .on {
+	opacity: 0;
+}
+
+.search_bookmark .off {
+	opacity: 1;
+}
+/* ON時 */
+.detail_bookmark.is-active .icon.on {
+	opacity: 1;
+}
+
+.detail_bookmark.is-active .icon.off {
+	opacity: 0;
+}
+/* OFF時 */
+.detail_bookmark .on {
+	opacity: 0;
+}
+
+.detail_bookmark .off {
+	opacity: 1;
+}
+
+.date_edit_wraper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	width: 100%;
+}
+
+#createDate {
+	font-size: 14px;
+	color: #777;
+}
+
+.edit_btn {
+	appearance: none;
+	-webkit-appearance: none;
+
+	background: none;
+	background-color: transparent;
+
+	border: none;
+	color: #777;
+
+
+	padding: 6px 12px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.image_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#panel_img {
+  width: 250px;
+  aspect-ratio: 3 / 2;
+
+  border-radius: 20px;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#panel_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f2f2f2;
+}
+
+/*縦の画像が見切れる*/
+/*#panel_img img {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  object-fit: cover;*/
+/*  display: block;*/
+/*}*/
+
+/*.image_wrapper {*/
+/*	display: flex;*/
+/*	align-items: center;*/
+/*}*/
+
+/*#panel_img {*/
+/*	width: 250px;*/
+/*	aspect-ratio: 3 / 2;*/
+
+/*	border-radius: 20px;*/
+/*	overflow: hidden;*/
+/*	border: 6px solid #fff;*/
+/*	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);*/
+
+/*	margin-bottom: 20px;*/
+/*}*/
+
+/*#panel_img img {*/
+/*	width: 100%;*/
+/*	height: 100%;*/
+/*	object-fit: cover;*/
+/*}*/
+
+#info {
+	overflow-wrap: break-word;
+}
+
+.panel_tags {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	gap: 5px;
+
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 10px;
+	right: 3px;
+}
+
+.panel_tag {
+	height: 35px;
+	width: 75px;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 20px;
+	background: #FFECBD;
+	color: #FF9E42;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	line-height: 1;
+	padding-bottom: 2px;
+}
+
+.select-panel {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background: #fff;
+	padding: 10px;
+	border-radius: 16px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	display: none;
+	z-index: 99999999;
+}
+
+.select-panel.open {
+	display: block;
+}
+
+
+
+.add_review_wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.add_review {
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: #fff;
+}
+
+.add_review_icon {
+	border: none;
+	cursor: pointer;
+}
+
+.add_review_a {
+	background-color: transparent;
+	     border: none;
+	     cursor: pointer;
+	     outline: none;
+	     appearance: none;
+	font-weight: 600;
+	color: #FF9E42;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+/*=================================================================
+    ■編集
+=============================================================== */
+.edit-panel {
+    position: fixed;
+    top: 0;
+
+    width: 450px;
+    height: 700px;
+    background: #fff;
+    transform: translateX(-100%);
+
+    left: -350px;
+    z-index: 2000;
+    padding: 10px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+	bottom: 0;
+	overflow-y: auto;
+}
+
+.edit-panel.open {
+    left: 30px;
+    top: 175px;
+	bottom: 0;
+    transform: translateX(0);
+}
+
+.edit-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.edit-panel::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.edit-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.update_pin_btn{
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+
+.update_event_btn{
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 10px; /* 間隔 */
+}
+
+/*画像表示*/
+.image_edit_wrap {
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* 左 */
+.current_image {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.current_image p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.current_image img {
+  width: 260px;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+
+  border-radius: 20px;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+
+  background: #f2f2f2;
+  display: block;
+}
+
+/* 削除予定（視覚フィードバック） */
+.current_image img.is-delete {
+  opacity: 0.4;
+}
+
+/* 右 */
+.upload_area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 80px; 
+}
+
+
+/* ファイル選択 */
+.file_label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ★ボタン風 */
+.file_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: #FF9E42;
+	color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.2s;
+}
+
+/* hover（おまけ） */
+.file_button:hover {
+  opacity: 0.9;
+}
+
+/* inputは隠す */
+input[type="file"] {
+  display: none;
+}
+
+/* ファイル名 */
+#file_name {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  word-break: break-all;      /* 長い単語でも強制改行 */
+  overflow-wrap: break-word;
+}
+/*イベント用*/
+/* ファイル名 */
+#event_file_name {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  word-break: break-all;      /* 長い単語でも強制改行 */
+  overflow-wrap: break-word;
+}
+
+/* チェックボックス */
+.checkbox_label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* キャンセルボタン*/
+#edit_cancel_image_btn {
+  padding: 8px 14px;
+  border: none;
+  background: #ccc;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+#edit_cancel_image_btn:hover {
+  opacity: 0.9;
+}
+/* 表示制御（初期非表示）*/
+#delete_wrap,
+#edit_cancel_image_btn {
+  display: none;
+}
+
+/*イベント用*/
+/* キャンセルボタン*/
+#edit_cancel_event_image_btn {
+  padding: 8px 14px;
+  border: none;
+  background: #ccc;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+#edit_cancel_event_image_btn:hover {
+  opacity: 0.9;
+}
+
+/* 表示制御（初期非表示）*/
+#event_delete_wrap,
+#edit_cancel_event_image_btn {
+  display: none;
+}
+
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+ 	height: 100px;
+  	resize: none;
+}
+
+/*=================================================================
+    ■レビュー追加
+=============================================================== */
+#add_reviewPanel {
+    position: fixed;
+    top: 0;
+    width: 450px;
+    height: 700px;
+    background: #fff;
+    transform: translateX(-100%);
+    left: -350px;
+    z-index: 2000;
+    padding: 10px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#add_reviewPanel.open {
+    left: 30px;
+    top: 175px;
+    bottom: 0;
+    transform: translateX(0);
+}
+
+#add_reviewPanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+#add_reviewPanel::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+#add_reviewPanel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#reviewName{
+	padding-left: 10px;
+}
+
+.add_review_p{
+	color: #777;
+	padding-left: 20px;
+}
+.add_review_wrapper{
+	
+	display: flex;
+		align-items: center;
+}
+.text_input{
+	width: 100%;
+	height: 150px;
+	display: block;
+	margin: 0 auto 20px auto;
+	margin-bottom: 70px;
+	resize: none;
+}
+
+.text_input-pinEdit{
+	width: 430px;
+	height: 300px;
+	display: block;
+	margin: 0 auto 20px auto;
+	resize: none;
+}
+
+.add_review_btn_icon {
+    background: none;
+    border: none;
+    padding-top: 5px;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+/*=================================================================
+    ■レビュー編集
+=============================================================== */
+#edit_reviewPanel {
+    position: fixed;
+    top: 0;
+    width: 450px;
+    height: 700px;
+    background: #fff;
+    transform: translateX(-100%);
+    left: -350px;
+    z-index: 2000;
+    padding: 10px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#edit_reviewPanel.open {
+    left: 30px;
+    top: 175px;
+    bottom: 0;
+    transform: translateX(0);
+}
+
+/*=================================================================
+    ■追加パネル
+=============================================================== */
+
+.add-panel {
+    position: fixed;
+    top: 0;
+
+    width: 450px;
+    height: 700px;
+    background: #fff;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+
+    left: -350px;
+    z-index: 2000;
+    padding: 10px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+	bottom: 0;
+	overflow-y: auto;
+}
+
+.add-panel.open {
+    left: 30px;
+    top: 175px;
+	bottom: 0;
+    transform: translateX(0);
+}
+
+.add-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.add-panel::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.add-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.add_pin_btn{
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+.add_event_btn{
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FF9E42;
+	color: rgb(255, 255, 255);
+
+	border-radius: 10px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+
+/*ピン追加用*/
+/* 全体：横並び */
+.pa_image_add_wrap {
+  display: flex;
+  gap: 20px;
+  align-items: center; /* ← 縦中央揃え */
+}
+
+/* 左：画像 */
+.pa_current_image {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pa_current_image img {
+  width: 260px;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 6px solid #fff;
+  background: #f2f2f2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 右：操作 */
+.pa_upload_area {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 12px;
+	margin-top: 40px; 
+}
+
+/* ボタン */
+.pa_file_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: #FF9E42;
+	color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.2s;
+}
+
+
+/* input隠す */
+.pa_file_label input[type="file"] {
+  display: none;
+}
+
+/* ファイル名 */
+#pa_file_name {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  word-break: break-all;      /* 長い単語でも強制改行 */
+  overflow-wrap: break-word;
+}
+
+#cancel_image_btn:hover {
+  opacity: 0.9;
+}
+
+/*イベント追加用*/
+/* 全体：横並び */
+.ea_image_add_wrap {
+  display: flex;
+  gap: 20px;
+  align-items: center; /* ← 縦中央揃え */
+}
+
+/* 左：画像 */
+.ea_current_image img {
+	width: 260px;
+	aspect-ratio: 3 / 2;
+	object-fit: contain;
+	border-radius: 20px;
+	border: 6px solid #fff;
+	background: #f2f2f2;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 右：操作 */
+.ea_upload_area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ボタン */
+.ea_file_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: #FF9E42;
+	color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.2s;
+	
+}
+
+/* input隠す */
+.ea_file_label input[type="file"] {
+  display: none;
+}
+
+/* ファイル名 */
+#ea_file_name {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  word-break: break-all;      /* 長い単語でも強制改行 */
+  overflow-wrap: break-word;
+}
+
+/* キャンセルボタン */
+#cancel_image_btn {
+  padding: 10px 20px;
+  background: #ccc;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 138px;
+}
+
+#cancel_image_btn:hover {
+  opacity: 0.9;
+}
+/* キャンセルボタン（イベント用） */
+#event_cancel_image_btn {
+	padding: 10px 20px;
+	background: #ccc;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	width: 138px;
+}
+
+#event_cancel_image_btn:hover {
+  opacity: 0.9;
+}
+
+/*=================================================================
+    ■ヘッダー 
+=============================================================== */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background-color: #FF9E42;
+	z-index: 9999;
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: inherit;
+	color: #fff;
+	height: 100%;
+	padding: 0 40px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+}
+
+.header_logo a {
+	text-decoration: none;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 50px;
+	color: #fff;
+}
+
+/* 検索 */
+
+.search_form_wrap {
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+.search_box {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+
+	transform: translateX(-50%);
+
+	width: 570px;
+	height: 60px;
+
+	background-color: #fff;
+	border-radius: 30px;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 0 20px;
+	box-sizing: border-box;
+
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+
+	transition: height 0.3s ease;
+
+	overflow: hidden;
+}
+
+.search_box.open {
+	height: 270px;
+}
+
+.search_form {
+	display: flex;
+	width: 100%;
+	min-height: 60px;
+	align-items: center;
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.search_bar {
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+.search_icon_btn {
+	width: 40px;
+	height: 40px;
+
+	border: none;
+	background: #ffecbd00;
+	border-radius: 20px;
+
+	cursor: pointer;
+	margin-right: 8px;
+}
+
+.search_btn {
+	width: 80px;
+	height: 40px;
+
+	border: none;
+	background: #FFECBD;
+	color: #FF9E42;
+
+	border-radius: 20px;
+	cursor: pointer;
+
+	margin-left: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: -15px;
+}
+
+.suggest_area {
+	height: 140px;
+	opacity: 0;
+	transform: translateY(-5px);
+	transition: all 0.3s ease;
+}
+
+.search_box.open .suggest_area {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.divider {
+	height: 1px;
+	background: #ddd;
+	margin: 10px 0;
+}
+
+.tag_text_b {
+	font-size: 32px;
+	color: #777;
+}
+
+.tag_text_s {
+	font-size: 24px;
+	color: #777;
+}
+
+.tag_grid {
+	display: grid;
+	grid-template-columns: repeat(3, 3fr);
+	gap: 12px;
+	padding-top: 10px;
+}
+
+.tag_btn {
+	height: 50px;
+	padding: 0 12px;
+
+	border: none;
+	border-radius: 25px;
+
+	background: #FFECBD;
+	cursor: pointer;
+
+	font-size: 24px;
+	color: #FF9E42;
+	font-weight: 600;
+
+	transition: 0.2s;
+	padding-top: -10px;
+}
+
+.tag_btn:hover {
+	transform: scale(1.05);
+}
+
+.tag_btn-event {
+	height: 50px;
+	padding: 0 12px;
+
+	border: none;
+	border-radius: 25px;
+
+	background: #FF9E42;
+	cursor: pointer;
+
+	font-size: 24px;
+	color: #FFECBD;
+	font-weight: 600;
+
+	transition: 0.2s;
+	padding-top: -10px;
+}
+
+.tag_btn-event:hover {
+	transform: scale(1.05);
+}
+
+/*ハンバーガー（線）*/
+.hamburger_menu_btn span {
+	position: absolute;
+	display: block;
+	content: "";
+	width: 70%;
+	height: 10px;
+	background-color: #fff;
+	transition: all 0.5s;
+	border-radius: 5px;
+}
+
+.hamburger_menu_btn span::after,
+.hamburger_menu_btn span::before {
+	position: absolute;
+	display: block;
+	content: "";
+	width: 100%;
+	height: 10px;
+	background-color: #fff;
+	transition: all 0.5s;
+	border-radius: 5px;
+}
+
+.hamburger_menu_btn span::before {
+	top: -20px;
+}
+
+.hamburger_menu_btn span::after {
+	bottom: -20px;
+}
+
+.hamburger_menu_btn.menu_open span {
+	background-color: transparent;
+}
+
+.hamburger_menu_btn.menu_open span::before {
+	top: 0;
+	transform: rotate(45deg);
+}
+
+.hamburger_menu_btn.menu_open span::after {
+	bottom: 0;
+	transform: rotate(-45deg);
+}
+
+/*ハンバーガーボタン本体*/
+.hamburger_menu_btn {
+	width: 100px;
+	height: 100px;
+
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	margin: 0;
+
+	appearance: none;
+	border: 0;
+	padding: 0;
+
+	background-color: #FF9E42;
+	cursor: pointer;
+	z-index: 40;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*メニュー*/
+.nav {
+	position: fixed;
+	width: 400px;
+	height: 100vh;
+	top: 0;
+	right: -100%;
+	background-color: #fff;
+
+	padding: 50px 0;
+	border-top: 1px solid #fff;
+	z-index: 20;
+
+	margin-left: auto;
+	padding-top: 99px;
+
+	transition: all 0.5s;
+}
+
+.nav.menu_open {
+	right: 0;
+}
+
+.nav_item {
+	position: relative;
+	margin: 0px;
+}
+
+.nav_item::after {
+	content: "";
+	position: absolute;
+	left: 10px;
+	right: 10px;
+
+	width: 95%;
+	height: 3px;
+	background: #D9D9D9;
+	bottom: -1.5px;
+
+	border-radius: 1.5px;
+	z-index: 10;
+}
+
+.nav_item a {
+	display: block;
+	font-size: 24px;
+	color: #7B7B7B;
+	text-decoration: none;
+
+	padding: 40px 0 30px 50px;
+	text-transform: uppercase;
+
+	transition: background-color 0.4s ease;
+}
+
+.nav_item a:hover {
+	background-color: rgba(233, 233, 233, 0.6);
+}
+
+/*===== ログイン状態 =====*/
+
+.login_status{	
+padding-right: 180px;	
+font-size: 22px;	
+font-weight: 500;	
+z-index: 21;	
+transition: color 0.8s ease;	
+}	
+.header.menu_open .login_status{	
+color: #FF9E42;	
+}
+
+/*リスト初期化*/
+ul {
+	padding-inline-start: 0;
+}
+
+ul.nav_list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+

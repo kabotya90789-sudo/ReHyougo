@@ -1,0 +1,480 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFECBD;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*全体の設計*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFECBD;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list_text {
+    font-size: Medium;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: #6E6E6E;
+    transition: .3s;
+}
+
+a:hover {
+    opacity: .6;
+}
+
+.column h1 {
+    display: block;
+    width: 100%;
+    /* これで下線が端までバシッと引かれます */
+    font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 5px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #D9D9D9;
+}
+
+/* 3列並びの土台 */
+.mypage_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 140px 40px 40px;
+    gap: 60px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 白い箱（セクション） */
+section {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+	flex: 1;
+    
+}
+
+/* --- 左:ユーザー情報 --- */
+
+/* 共通 */
+.user_sec {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+	flex: 0.2;
+	min-height: unset;
+}
+
+.user_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid #D9D9D9;
+    padding: 15px 5px;
+}
+
+/*パスワードと編集ボタン*/
+.password_row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user_edit_btn {
+    margin-right: 20px;
+}
+
+
+.user_list_btn {
+    display: flex;
+    justify-content: space-around;
+    padding: 0px 5px 10px 5px;
+    width: 100%;
+}
+
+/* 真ん中：作成したスポットピンとイベントピン */
+
+/* タイトル部分のアイコンと文字を横並びに */
+.section_title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section_title .wakaba_icon,
+.wakaba_icon {
+    width: 28px;
+    height: auto;
+}
+
+/* 画像とタイトルを包むコンテナを横並びに */
+.text_area {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    /* タイトル(右)と画像エリア(左)を入れ替え */
+    justify-content: flex-end;
+    /* 左詰めに寄せる */
+    gap: 20px;
+    /* 画像とタイトルの間の隙間 */
+    padding: 10px 5px;
+    position: relative;
+    /* 日付の絶対配置の基準 */
+    min-height: 120px;
+    /* カードの最低限の高さを確保 */
+    border-bottom: 3px solid #D9D9D9;
+}
+
+/* タイトルエリアの調整 */
+.title_area {
+    flex: 1;
+    /* 余った幅を広げる */
+}
+
+.search_name {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0;
+}
+
+/* 画像エリアの調整 */
+.left_area {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    /* 画像が潰れないように固定 */
+}
+
+.search_img img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+	}
+
+/* 作成日を右下に強制移動 */
+.search_date {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+
+/* 一覧へのボタン*/
+.pin_list_btn {
+    display: flex;
+    justify-content: space-around;
+    /* ボタンを均等に配置 */
+    margin-top: auto;
+    /* セクションの最下部に固定 */
+    padding: 10px 5px 10px 5px;
+    /* 左側のボタンエリアの余白と合わせる */
+    width: 100%;
+}
+
+/* 右：レビューとブックマーク */
+
+/* レビュー1件分の枠 */
+.review_sec .text_area {
+    display: flex;
+    flex-direction: column;
+    /* 縦並びに戻す */
+    align-items: stretch;
+    /* 中央寄せを解除して横幅いっぱいに */
+    gap: 10px;
+    padding: 15px 10px;
+}
+
+/* タイトルと作成日の両端揃えエリア */
+.review_sec .title_area {
+    display: flex;
+    flex-direction: row;
+    /* 横並びを強制 */
+    justify-content: space-between;
+    /* これで両端に飛ぶ */
+    align-items: flex-start;
+    width: 100%;
+    /* 横幅を100%にするのが重要 */
+    padding: 0 5px;
+}
+
+/* スポット名（左側） */
+.reveiw_name {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+
+/* 作成日（右側） */
+.review_sec .review_date {
+    position: static;
+    /* 真ん中で使った absolute を解除 */
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* レビュー本文（中央） */
+.review_sec .desc_area {
+    padding: 10px 10px;
+
+}
+
+.review_sec .desc {
+    color: #666;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/*レビュー一覧ボタン*/
+.review_list_btn {
+    display: flex;
+    justify-content: flex-end;
+    /* 右寄せ */
+    padding: 10px 20px 20px;
+    /* 右側に程よい余白 */
+    margin-top: auto;
+}
+
+/* ブックマークセクション */
+.bookmark_sec {
+    display: flex;
+    flex-direction: column;
+	justify-content: space-between;
+}
+
+/* 一覧へのボタン */
+.bookmark_list_btn {
+    display: flex;
+    flex-direction: column;
+	flex: 1;
+	padding: 50px 0;
+    
+}
+
+
+/* アンカータグ自体の設定 */
+.bookmark_list_btn a {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    white-space: nowrap;
+    margin: 30px 0;
+    padding: 20px 0;
+
+}
+
+.bookmark_list_btn a:first-child {
+    border-bottom: 3px solid#D9D9D9;
+}
+
+.bookmark_list_btn a:last-child {
+    border-bottom: none;
+    margin-top: 0;
+}
+
+/* =========================================
+   ログアウトモーダル用
+   ========================================= */
+
+/* モーダル全体の背景（オーバーレイ） */
+.logout_modal {
+    display: none;
+    /* 初期状態は非表示 */
+    position: fixed;
+    /* 画面に対して固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明の黒 */
+    z-index: 9999;
+    /* 一番手前に来るように */
+    justify-content: center;
+    /* 中身を左右中央に */
+    align-items: center;
+    /* 中身を上下中央に */
+}
+
+/* モーダルの白い窓 */
+.modal_window {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    /* 角を丸くして今っぽく */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    animation: fadeIn 0.3s ease;
+    /* ふわっと出す演出 */
+}
+
+/* 「ログアウトしますか？」の文字 */
+.modal_window p {
+    font-size: 20px;
+    font-weight: medium;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ボタンの配置 */
+.logout_modal_btns {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+/* ボタンの共通スタイル */
+.logout_modal_btns button,
+.modal-btns a {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.logout_modal_btns button:hover,
+.modal-btns a:hover {
+    opacity: 0.8;
+}
+
+/* 「はい」ボタン（警告色） */
+.logout_btn_yes,
+.logout_btn_no {
+    background-color: #f0f0f0;
+    /* グレー系 */
+    color: #666 !important;
+}
+
+
+/* ふわっと表示させるアニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*========================ひょうごっっち===========================*/
+.pet_sec{
+flex: 1.6;
+}
+.room {
+position: relative;
+overflow: hidden;
+}
+.room_img{
+margin-top: 30px;
+width: 100%;
+height: auto;
+display: block;
+}
+/* キャラの入れ物 */
+.char_wrap {
+position: absolute;
+bottom: 5px;
+left: 35%;
+transform: translateX(-50%);
+width: 120px;
+transition: transform 2.5s linear;
+z-index: 10;
+}
+/* キャラ画像 */
+.char {
+width: 300px;
+height: auto;
+display: block;
+}
+/* ジャンプ */
+.jump {
+animation: jump 0.6s ease-in-out;
+}
+@keyframes jump {
+0% { transform: translateY(0); }
+25% { transform: translateY(-10px); }
+50% { transform: translateY(0); }
+75% { transform: translateY(-10px); }
+100% { transform: translateY(0); }
+}
+/* 全体 */
+.user_info_wraper{
+display: flex;
+gap: 20px;
+width: 100%;
+margin-top: 20px;
+}
+/* 左右の箱 共通 */
+.user_left,
+.user_right{
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 12px;
+padding: 15px;
+border-radius: 12px;
+}
+/* 薄い文字 */
+.light{
+color: #777;
+font-size: 16px;
+font-weight: 400;
+line-height: 0.6;
+}
+/* 強調文字 */
+.bold{
+color: rgb(0, 0, 0);
+font-size: 20px;
+font-weight: 600;
+margin-left: 6px;
+}
